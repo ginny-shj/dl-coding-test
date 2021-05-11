@@ -148,14 +148,14 @@ $RECYCLE.BIN/
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/artifacts
-# .idea/compiler.xml
-# .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/artifacts
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
 
 # CMake
 cmake-build-*/
@@ -200,6 +200,8 @@ fabric.properties
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/aws.xml
+.idea
 
 # Generated files
 .idea/**/contentModel.xml
@@ -272,7 +274,7 @@ fabric.properties
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+gradle-wrapper.jar
 
 # Cache of project
 .gradletasknamecache
@@ -281,3 +283,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /src/main/kotlin/me/wsjung/
+/src/test/groovy/me/wsjung/
