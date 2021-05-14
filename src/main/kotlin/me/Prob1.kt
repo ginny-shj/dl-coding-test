@@ -8,7 +8,7 @@ import java.lang.Exception
 
 
 
-동
+
 
 class Prob1 { //이름명 + 파일 까지 다 바꾸는 방법 : mod+shift+F6
                 // 클래스명 : 대문자시작, 함수명 : 소문자시작
@@ -38,7 +38,7 @@ class Prob1 { //이름명 + 파일 까지 다 바꾸는 방법 : mod+shift+F6
 
 
 fun main(){
-    val inputdata = readLine().toString().replace(" ", "")
+    val inputdata = readLine().toString().replace(" ", "") //여기서 공백잡기
     val cal = Prob1()
     println(cal.calculator(inputdata))
 }
