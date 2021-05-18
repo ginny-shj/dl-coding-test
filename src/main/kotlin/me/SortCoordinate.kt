@@ -16,7 +16,7 @@ class SortCoordinate {
 
     fun getSortedCoordinate(data: String): String? {
         try{
-            val regex = """\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)(\d+)""".toRegex()
+            val regex = """\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)(\d+)""".toRegex() // 음수 생각안했다...
             val matchResult = regex.find(data)
             val (x1,y1,x2,y2,x3,y3,x4,y4,int) =  matchResult!!.destructured
 
