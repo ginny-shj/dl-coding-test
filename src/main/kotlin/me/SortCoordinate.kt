@@ -2,62 +2,57 @@ package me
 
 import kotlin.math.*
 
+
 data class Coordinate(
     val x: Int,
     val y: Int,
     var distance: Double = 0.0
 )
 
-
-
 class SortCoordinate {
-    // input 데이터 -> 좌표평면 리스트 -> 거리 리스트 (소팅) -> 정렬후 스트링
     fun getDistance(coordinate1: Coordinate, coordinate2: Coordinate): Double{
         return sqrt((coordinate1.x - coordinate2.x).toDouble().pow(2) + (coordinate1.y - coordinate2.y).toDouble().pow(2))
     }
 
     fun getSortedCoordinate(data: String): String? {
-        //1. decoding string input
+        try{
+            val regex = """\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)\(([ 0-9.]+),([ 0-9.]+)\)(\d+)""".toRegex()
+            val matchResult = regex.find(data)
+            val (x1,y1,x2,y2,x3,y3,x4,y4,int) =  matchResult!!.destructured
 
-        val regex = """.*(\d+).*(\d+).*(\d+).*(\d+).*(\d+).*(\d+).*(\d+).*(\d+).*(\d+).*""".toRegex()
-        val matchResult = regex.find(data)
-        val (x1,y1,x2,y2,x3,y3,x4,y4,int) =  matchResult!!.destructured
+            var sortedCoord = emptyList<Coordinate>()
+            val coordList = listOf(
+                Coordinate(x1.toInt(), y1.toInt()),
+                Coordinate(x2.toInt(), y2.toInt()),
+                Coordinate(x3.toInt(), y3.toInt()),
+                Coordinate(x4.toInt(), y4.toInt())
+            )
+            for (index in coordList.indices){
+                coordList[index].distance = getDistance(coordList[int.toInt()-1], coordList[index])
+            }
+            sortedCoord = coordList.sortedBy(Coordinate::distance)
 
+            return "(${sortedCoord[0].x},${sortedCoord[0].y}) " +
+                    "(${sortedCoord[1].x},${sortedCoord[1].y}) " +
+                    "(${sortedCoord[2].x},${sortedCoord[2].y}) " +
+                    "(${sortedCoord[3].x},${sortedCoord[3].y})"
 
-        //2. 리스트: 좌표평면 만들기
-        val coordList: List<Coordinate> = listOf(Coordinate(x1.toInt(), y1.toInt()), Coordinate(x2.toInt(), y2.toInt()), Coordinate(x3.toInt(), y3.toInt()), Coordinate(x4.toInt(), y4.toInt()))
-
-
-        //3. 리스트: 거리 만들기
-        for (index in 0..3){
-            coordList[index].distance = getDistance(coordList[int.toInt()], coordList[index])
+            
+        } catch(e: NullPointerException){
+            return "다음을 확인해 주세요 : \n" +
+                    "1. 괄호 및 쉼표를 이용하여 올바른 좌표표기를 하셨나요? \n" +
+                    "2. 좌표 4개와 숫자 1개를 입력하셨나요?"
+        } catch(e: NumberFormatException){
+            return "정수를 넣어주세요."
+        } catch(s: ArrayIndexOutOfBoundsException){
+            return "알맞는 순번를 넣어주세요"
         }
-
-        //4. 거리 sorting
-        //정렬 수정필요
-        coordList.sortedBy(Coordinate::distance)
-//        println(coordList[0])
-//        println(coordList[1])
-//        println(coordList[2])
-//        println(coordList[3])
-
-
-        //5. 좌표평면 sorting
-
-
-
-        //6. output : 스트링으로
-        // python end옵션추가 -> for
-        return "(${coordList[0].x},${coordList[0].y}) (${coordList[1].x},${coordList[1].y}) (${coordList[2].x}, ${coordList[2].y}) (${coordList[3].x}, ${coordList[3].y})"
     }
 }
 
 
 fun main(args: Array<String>){
-    val inputData = readLine().toString()
+    val inputData = readLine().toString().replace(" ", "")
     val result = SortCoordinate().getSortedCoordinate(inputData)
     println(result)
-
-
 }
-
