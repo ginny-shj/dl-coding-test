@@ -1,5 +1,6 @@
 package me
 
+//TODO: 1. 알고리즘 개선, 2. 오류 잡기
 
 class SortedPoints {
     var sortedPoints = emptyList<Point>()
@@ -17,7 +18,7 @@ class SortedPoints {
             Point(x4.toInt(),y4.toInt()))
         var center = points[index.toInt() -1]
 
-        points.map{ it.getDistance(center) }
+        points.map{ it.getDistance(center) }    //O(n) : 리스트의 길이에 비례
         this.sortedPoints = points.sortedBy{ it.d }
     }
 
@@ -32,9 +33,9 @@ class SortedPoints {
     companion object{
         @JvmStatic
         fun main(args: Array<String>){
-            val listofPoints = SortedPoints()
-            listofPoints.sort(args[0])
-            println(listofPoints)
+            val listPoints = SortedPoints()
+            listPoints.sort(args[0])
+            println(listPoints)
         }
     }
 }
