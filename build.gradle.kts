@@ -13,6 +13,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.codehaus.groovy:groovy:3.0.7")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation(platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0"))
     testImplementation("org.spockframework:spock-core")
 
